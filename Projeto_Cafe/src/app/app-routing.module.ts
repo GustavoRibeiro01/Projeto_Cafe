@@ -14,7 +14,8 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
-  },  { path: 'cadastro-screen', loadChildren: './Pages/cadastro-screen/cadastro-screen.module#CadastroScreenPageModule' }
+  },  { path: 'cadastro-screen', loadChildren: './Pages/cadastro-screen/cadastro-screen.module#CadastroScreenPageModule' },
+  { path: 'sobre-screen', loadChildren: './Pages/sobre-screen/sobre-screen.module#SobreScreenPageModule' }
 
 ];
 
