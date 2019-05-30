@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login-screen',
     pathMatch: 'full'
   },
   {
@@ -23,7 +23,8 @@ const routes: Routes = [
   { path: 'relatorios-screen', loadChildren: './Pages/relatorios-screen/relatorios-screen.module#RelatoriosScreenPageModule' },
 
 
-  { path: 'login-screen', loadChildren: './Pages/login-screen/login-screen.module#LoginScreenPageModule' },  { path: 'relatorios2-screen', loadChildren: './Pages/relatorios2-screen/relatorios2-screen.module#Relatorios2ScreenPageModule' }
+  { path: 'login-screen', loadChildren: './Pages/login-screen/login-screen.module#LoginScreenPageModule' },
+  { path: 'relatorios2-screen', loadChildren: './Pages/relatorios2-screen/relatorios2-screen.module#Relatorios2ScreenPageModule' }
 
 
 ];
