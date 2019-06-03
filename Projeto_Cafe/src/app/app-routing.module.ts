@@ -24,7 +24,8 @@ const routes: Routes = [
 
 
   { path: 'login-screen', loadChildren: './Pages/login-screen/login-screen.module#LoginScreenPageModule' },
-  { path: 'relatorios2-screen', loadChildren: './Pages/relatorios2-screen/relatorios2-screen.module#Relatorios2ScreenPageModule' }
+  { path: 'relatorios2-screen', loadChildren: './Pages/relatorios2-screen/relatorios2-screen.module#Relatorios2ScreenPageModule' },  { path: 'cadastro-produto-screen', loadChildren: './Pages/cadastro-produto-screen/cadastro-produto-screen.module#CadastroProdutoScreenPageModule' }
+
 
 
 ];
