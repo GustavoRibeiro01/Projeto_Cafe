@@ -4,15 +4,22 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-label position="floating">Nome</ion-label>
-    <ion-input></ion-input>
-
-  <ion-label position="floating">E-mail</ion-label>
-    <ion-input></ion-input>
+<ion-content padding>
   
-  <ion-label position="floating">Senha</ion-label>
-    <ion-input></ion-input>
+  <form [formGroup]="formRegistro" (ngSubmit)="Cadastrar(formRegistro.value)">
 
-    <ion-button expand="block">Cadastrar</ion-button>
+    <ion-item>
+        <ion-label position="floating">E-mail</ion-label>
+        <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit">Cadastrar</ion-button>
+
+  </form>
+  
 </ion-content>

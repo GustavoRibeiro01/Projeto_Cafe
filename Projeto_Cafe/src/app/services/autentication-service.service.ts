@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth' ;
 import * as flogin from 'firebase/app';
-import { reject } from 'q';
-import { resolve } from 'dns';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AutenticationServiceService {
 
-  constructor() { }
-
-  cadastroUsuario(user){
+  constructor(
+    public afAuth: AngularFireAuth
+  ) { }
+  
+  cadastroUsuario = (user) => {
     return new Promise<any>(( resolve , reject) => {
-      flogin.auth().createUserWithEmailAndPassword(user.email, user.password)
+      this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
         .then(
           res => resolve(res),
           err => reject(err)
@@ -20,15 +22,16 @@ export class AutenticationServiceService {
     });
   }
 
-  loginUsuario(user){
-    return new Promise<any> ( (resolve, reject) => {
-      flogin.auth().signInWithEmailAndPassword(user.email, user.password)
+  loginUsuario = (user) => {
+    return new Promise<any>(( resolve , reject) => {
+      this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
         .then(
-          res => resolve (res),
+          res => resolve(res),
           err => reject(err)
         )
-    } );
+    })
   }
+
 
   logoutUsuario(){
     return new Promise<any>( (resolve, reject) => {
