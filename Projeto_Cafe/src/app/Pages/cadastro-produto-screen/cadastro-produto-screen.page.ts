@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ProdutoService } from 'src/app/services/produto.service';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-cadastro-produto-screen',
@@ -13,7 +15,8 @@ export class CadastroProdutoScreenPage implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private produtoservice: ProdutoService
   ) { }
 
   ngOnInit() {
@@ -25,6 +28,12 @@ export class CadastroProdutoScreenPage implements OnInit {
 
   Cadastrar = (produto) => {
     console.log(produto)
+    this.produtoservice.addProduto(produto).then(
+      dado => {
+        this.router.navigateByUrl("/list")
+      },
+      err => console.log(err) 
+    )
   }
 
 }

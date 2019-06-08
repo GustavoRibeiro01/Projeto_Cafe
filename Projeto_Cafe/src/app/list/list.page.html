@@ -4,24 +4,29 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      List
+      Coffes Shop
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-icon [name]="item.icon" slot="start"></ion-icon>
-        {{item.name}}
-      <div class="item-note" slot="end">
-        {{item.note}}
-      </div>
-    </ion-item>
-  </ion-list>
-  <!--
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title }}</b>
-    </div>
-  -->
+<ion-content padding>
+
+  <div  *ngFor="let produto of (produtos | async)">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>{{produto.id}}</ion-card-subtitle>
+        <ion-card-title>{{produto.Nome}}</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <div>
+          <ion-button>ok</ion-button>
+          <ion-button>ok1</ion-button>
+          <ion-button (click)="addCarrinhoCompra(produto)">ok2</ion-button>
+        </div>
+          {{produto.Descricao}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+
 </ion-content>

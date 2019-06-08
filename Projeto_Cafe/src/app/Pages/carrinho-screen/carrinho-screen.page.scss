@@ -1,0 +1,41 @@
+.header{
+    background: rgb(231, 67, 67);
+    font-weight: bold;
+    text-align: center;
+}
+
+.total{
+    background: rgb(197, 187, 187);
+    text-align: right;
+    font-weight: bold;
+}
+
+.bodystring{
+    border-bottom: groove;
+    background: white;
+    border: think solid black;
+    text-align: left;
+    align-content: center;
+
+}
+
+.bodynumber{
+    border-bottom: groove;
+    background: white;
+    border: think solid black;
+    text-align: right;
+}
+
+.bodybutton{
+    border-bottom: groove;
+    background: white;
+    border: think solid black;
+    text-align: center;
+}
+
+.alinhamento{
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+}
