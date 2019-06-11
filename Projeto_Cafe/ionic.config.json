@@ -1,5 +1,7 @@
 {
   "name": "Projeto_Cafe",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

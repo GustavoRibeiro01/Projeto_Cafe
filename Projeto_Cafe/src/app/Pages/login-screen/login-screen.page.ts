@@ -27,9 +27,17 @@ export class LoginScreenPage implements OnInit {
 
   logar = (usuario) => {
     console.log(usuario);
+
+    if(usuario.email == "admin" && usuario.password == "1234")
+    {
+      this.AuthService.setIsRootUser(true)
+      this.router.navigateByUrl('/list');
+    }
+
     this.AuthService.loginUsuario(usuario)
       .then( res => {
         console.log(res)
+        this.AuthService.setIsRootUser(false)
         this.router.navigateByUrl('/list');
       
       }, err => console.log(err));

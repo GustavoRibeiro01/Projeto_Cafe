@@ -8,6 +8,8 @@ import * as flogin from 'firebase/app';
 })
 export class AutenticationServiceService {
 
+  private rootUser: boolean
+
   constructor(
     public afAuth: AngularFireAuth
   ) { }
@@ -48,6 +50,15 @@ export class AutenticationServiceService {
 
   detalhesUsuario(){
     return flogin.auth().currentUser;
+  }
+
+  getIsRootUser = (): boolean => {
+    return this.rootUser
+  }
+
+  setIsRootUser = (value: boolean) => {
+    this.rootUser = value
+
   }
 
 }

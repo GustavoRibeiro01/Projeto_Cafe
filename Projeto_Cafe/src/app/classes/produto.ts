@@ -3,4 +3,5 @@ export class Produto {
     public Nome: string;
     public Descricao: string;
     public Preco: number;
+    public Image: string;
 }

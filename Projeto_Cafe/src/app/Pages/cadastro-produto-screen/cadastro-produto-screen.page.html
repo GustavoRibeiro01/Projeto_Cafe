@@ -5,6 +5,12 @@
 </ion-header>
 
 <ion-content padding>
+  
+  <div>
+    <ion-button (click)="capturar()"></ion-button>
+    <img src="{{base64Image}}">
+  </div>
+
   <form [formGroup]="formCadastroProduto" (ngSubmit)="Cadastrar(formCadastroProduto.value)">
 
     <ion-item>

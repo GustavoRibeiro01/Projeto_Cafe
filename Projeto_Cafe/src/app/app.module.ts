@@ -18,6 +18,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+import { Camera } from '@ionic-native/camera/ngx'
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -36,7 +39,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: FirestoreSettingsToken, useValue: {} }
+    { provide: FirestoreSettingsToken, useValue: {} },
+    Camera
   ],
   bootstrap: [AppComponent]
 })

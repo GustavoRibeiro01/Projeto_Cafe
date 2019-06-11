@@ -40,7 +40,9 @@ export class ProdutoService {
      return this.produtos
    }
 
-   addProduto = ( produto: Produto): Promise<DocumentReference> => {
+   addProduto = ( produto: Produto, img: string): Promise<DocumentReference> => {
+    produto.Image = img;
+    console.log(img)
     return this.produtoCollection.add(produto);
   }
 
