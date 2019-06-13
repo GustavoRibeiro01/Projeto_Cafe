@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ProdutoService } from 'src/app/services/produto.service';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 
+
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Component({
@@ -30,6 +31,10 @@ export class CadastroProdutoScreenPage implements OnInit {
                                                       })
   }
 
+  ionViewDidEnter(){
+    this.base64Image = "../../../assets/icon/camera.png"
+  }
+
   Cadastrar = (produto) => {
 
     console.log(produto)
@@ -49,7 +54,8 @@ export class CadastroProdutoScreenPage implements OnInit {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      allowEdit: true
+      allowEdit: true,
+      targetHeight: 500
     }
 
     this.camera.getPicture(options).then((imageData) => {

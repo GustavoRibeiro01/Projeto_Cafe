@@ -46,6 +46,12 @@ export class ProdutoService {
     return this.produtoCollection.add(produto);
   }
 
+  removeProduto = (id: string) => {
+    return this.produtoCollection.doc(id).delete();
+  }
+
+  //----------------------------------------Carrinho de Compra---------------------------------------------
+
   addCarrinhoCompras = (prod: Produto) => {
     carrinhoCompras.push(prod)
   }

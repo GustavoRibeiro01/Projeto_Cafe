@@ -14,7 +14,7 @@
   <div  *ngFor="let produto of (produtos | async)">
     <ion-card>
 
-      <img src="{{produto.Image}}">
+      <img class="image" src="{{produto.Image}}">
 
       <ion-card-header>
         <ion-card-title>{{produto.Nome}}</ion-card-title>
@@ -23,11 +23,24 @@
       <ion-card-content>
         
         <div>
-          <ion-button class="align-right" *ngIf="rootUser">ok</ion-button>
-          <ion-button class="align-right" *ngIf="rootUser">ok1</ion-button>
-          <ion-button class="align-right" (click)="addCarrinhoCompra(produto)">ok2</ion-button>
+            <ion-button color="warning" class="align-right" *ngIf="rootUser" (click)="removerProduto(produto.id)" >
+                <ion-icon name="create"></ion-icon>
+            </ion-button>
+
+          <ion-button color="danger" class="align-right" *ngIf="rootUser" (click)="removerProduto(produto.id)" >
+              <ion-icon name="trash"></ion-icon>
+          </ion-button>
+
+          <ion-button color="success" class="align-right" *ngIf="!rootUser" (click)="addCarrinhoCompra(produto)" >
+              <ion-icon name="cart"></ion-icon>
+          </ion-button>
+          
         </div>
+
+        <br>
+
           {{produto.Descricao}}
+
       </ion-card-content>
     </ion-card>
   </div>

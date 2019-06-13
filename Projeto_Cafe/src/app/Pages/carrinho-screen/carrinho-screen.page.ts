@@ -68,8 +68,6 @@ export class CarrinhoScreenPage implements OnInit {
 
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
-    console.log(this.carrinhoCompras.map(f => f.Preco).reduce(reducer))
-
     return this.carrinhoCompras.map(f => Number.parseFloat(f.Preco)).reduce(reducer)
 
   }

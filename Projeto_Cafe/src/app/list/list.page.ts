@@ -35,4 +35,10 @@ export class ListPage implements OnInit {
     this.produtoService.addCarrinhoCompras(prod)
     console.log(this.produtoService.getCarrinhoCompras())
   }
+
+  removerProduto = (id: string) => {
+    console.log(id)
+    this.produtoService.removeProduto(id)
+  }
+
 }
