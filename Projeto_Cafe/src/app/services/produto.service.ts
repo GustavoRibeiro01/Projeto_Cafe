@@ -80,7 +80,7 @@ export class ProdutoService {
 
   }
 
-  FinalizarCompra = () => {
+  esvaziarCarrinho = () => {
 
     carrinhoCompras.splice(0, carrinhoCompras.length);
 

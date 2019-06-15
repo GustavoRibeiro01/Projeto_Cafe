@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from 'src/app/services/produto.service';
 import { Produto } from 'src/app/classes/produto';
+import { VendaService } from 'src/app/services/venda.service';
+import { Router } from '@angular/router';
+import { ItemVendido } from 'src/app/interface/item-vendido';
+import { Venda } from 'src/app/interface/venda';
 
 @Component({
   selector: 'app-carrinho-screen',
@@ -12,10 +16,16 @@ export class CarrinhoScreenPage implements OnInit {
   carrinhoCompras = []
   carrinhoComprasFinal = []
 
+  venda: Venda
 
   constructor(
-    private produtoService: ProdutoService
-  ) { }
+    private produtoService: ProdutoService,
+    private vendaService: VendaService,
+    private router: Router
+  ) { 
+    this.venda = {} as Venda
+    this.venda.itensVendido = {} as ItemVendido[]
+  }
 
   ngOnInit() {
     this.carrinhoCompras = this.produtoService.getCarrinhoCompras()
@@ -48,7 +58,7 @@ export class CarrinhoScreenPage implements OnInit {
 
   }
 
-  returnQuantidadeItem(id: number): number {
+  returnQuantidadeItem(id: string): number {
 
 
     return this.carrinhoCompras.filter(f => f.id == id).length
@@ -85,6 +95,51 @@ export class CarrinhoScreenPage implements OnInit {
 
   removerCarrinho = (prod: Produto) => {
     this.produtoService.removeCarrinho(prod)
+  }
+
+  //-------------------------------------------------------Finalizar Compra----------------------------------------------------------------
+
+  gerarDataAtual = (): string => {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+
+    return dd + '/' + mm + '/' + yyyy;
+
+  }
+
+  gerarItemVendido = (prod: Produto): ItemVendido => {
+    
+    let itemVendido: ItemVendido
+
+    itemVendido = {} as ItemVendido
+
+    itemVendido.id = prod.id
+    itemVendido.Nome = prod.Nome
+    itemVendido.Descricao = prod.Descricao
+    itemVendido.Quantidade = this.returnQuantidadeItem(prod.id)
+    itemVendido.Preco = prod.Preco
+
+    return itemVendido
+
+  }
+
+  finalizarCompra = () => {
+
+    this.venda.data = this.gerarDataAtual()
+    this.venda.itensVendido = this.carrinhoComprasFinal.map(prod => this.gerarItemVendido(prod))
+
+    console.log(this.venda)
+
+    this.vendaService.addVendaFB(this.venda).then(
+      ok => {
+        this.produtoService.esvaziarCarrinho()
+        this.router.navigateByUrl("/carrinho-screen")
+      },
+      err => console.log(err) 
+    )
+
   }
 
 }
