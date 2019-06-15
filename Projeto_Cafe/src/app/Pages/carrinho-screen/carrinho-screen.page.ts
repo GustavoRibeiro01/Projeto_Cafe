@@ -5,6 +5,7 @@ import { VendaService } from 'src/app/services/venda.service';
 import { Router } from '@angular/router';
 import { ItemVendido } from 'src/app/interface/item-vendido';
 import { Venda } from 'src/app/interface/venda';
+import { AutenticationServiceService } from 'src/app/services/autentication-service.service';
 
 @Component({
   selector: 'app-carrinho-screen',
@@ -21,6 +22,7 @@ export class CarrinhoScreenPage implements OnInit {
   constructor(
     private produtoService: ProdutoService,
     private vendaService: VendaService,
+    private authService: AutenticationServiceService,
     private router: Router
   ) { 
     this.venda = {} as Venda
@@ -129,6 +131,7 @@ export class CarrinhoScreenPage implements OnInit {
 
     this.venda.data = this.gerarDataAtual()
     this.venda.itensVendido = this.carrinhoComprasFinal.map(prod => this.gerarItemVendido(prod))
+    this.venda.uid = this.authService.detalhesUsuario().uid
 
     console.log(this.venda)
 

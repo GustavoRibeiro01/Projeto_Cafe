@@ -37,6 +37,7 @@ export class LoginScreenPage implements OnInit {
     this.AuthService.loginUsuario(usuario)
       .then( res => {
         console.log(res)
+        console.log(res.user.uid)
         this.AuthService.setIsRootUser(false)
         this.router.navigateByUrl('/list');
       

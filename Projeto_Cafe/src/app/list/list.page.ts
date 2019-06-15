@@ -25,7 +25,6 @@ export class ListPage implements OnInit {
 
   ngOnInit() {
     this.produtos = this.produtoService.getProdutos()
-    
   }
 
   ionViewDidEnter() {

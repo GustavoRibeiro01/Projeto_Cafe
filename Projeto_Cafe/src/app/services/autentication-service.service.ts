@@ -37,8 +37,8 @@ export class AutenticationServiceService {
 
   logoutUsuario(){
     return new Promise<any>( (resolve, reject) => {
-      if(flogin.auth().currentUser){
-        flogin.auth().signOut()
+      if(this.afAuth.auth.currentUser){
+        this.afAuth.auth.signOut()
           .then( () => {
             console.log("log out");
             resolve();
@@ -48,8 +48,8 @@ export class AutenticationServiceService {
     });
   }
 
-  detalhesUsuario(){
-    return flogin.auth().currentUser;
+  detalhesUsuario = () => {
+    return this.afAuth.auth.currentUser;
   }
 
   getIsRootUser = (): boolean => {
