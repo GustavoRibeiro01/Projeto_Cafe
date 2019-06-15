@@ -18,12 +18,16 @@
 
       <ion-card-header>
         <ion-card-title>{{produto.Nome}}</ion-card-title>
+        <ion-card-subtitle class="color-number"> R$ {{produto.Preco}}</ion-card-subtitle>
       </ion-card-header>
     
       <ion-card-content>
-        
-        <div>
-            <ion-button color="warning" class="align-right" *ngIf="rootUser" (click)="removerProduto(produto.id)" >
+
+        <div class="box">
+
+          <div class="conteiner">
+            
+            <ion-button color="warning" class="align-right" *ngIf="rootUser" (click)="updateProduto(produto.id)" >
                 <ion-icon name="create"></ion-icon>
             </ion-button>
 
@@ -36,6 +40,8 @@
           </ion-button>
           
         </div>
+
+      </div>
 
         <br>
 

@@ -12,6 +12,7 @@ export class ProdutoService {
 
   produtos: Observable<Produto[]>
   produtoCollection: AngularFirestoreCollection<Produto>
+  private produtoDetail: Produto
 
   constructor(
     private afs: AngularFirestore,
@@ -48,6 +49,14 @@ export class ProdutoService {
 
   removeProduto = (id: string) => {
     return this.produtoCollection.doc(id).delete();
+  }
+
+  setProdutoDetail = (value: Produto) => {
+    this.produtoDetail = value
+  }
+
+  getProdutoDetail = () => {
+    return this.produtoDetail
   }
 
   //----------------------------------------Carrinho de Compra---------------------------------------------

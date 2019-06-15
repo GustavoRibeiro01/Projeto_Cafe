@@ -3,6 +3,7 @@ import { ProdutoService } from '../services/produto.service';
 import { Observable } from 'rxjs';
 import { Produto } from '../classes/produto';
 import { AutenticationServiceService } from '../services/autentication-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -16,7 +17,8 @@ export class ListPage implements OnInit {
 
   constructor(
     private produtoService: ProdutoService,
-    private authService: AutenticationServiceService
+    private authService: AutenticationServiceService,
+    private route: Router
   ) {
    
   }
@@ -34,6 +36,13 @@ export class ListPage implements OnInit {
   addCarrinhoCompra = (prod: Produto) => {
     this.produtoService.addCarrinhoCompras(prod)
     console.log(this.produtoService.getCarrinhoCompras())
+  }
+
+  updateProduto = (produto: Produto) => {
+
+    this.produtoService.setProdutoDetail(produto)
+    this.route.navigateByUrl("/cadastro-produto-details-screen")
+
   }
 
   removerProduto = (id: string) => {
