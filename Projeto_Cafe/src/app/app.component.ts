@@ -27,15 +27,26 @@ export class AppComponent implements OnInit{
         icon: 'cart'
       },
       {
-      title: 'Produtos',
-      url: '/list',
-      icon: 'list'
-    },
-    {
-      title: 'Carrinho',
-      url: '/carrinho-screen',
-      icon: 'cart'
-    })
+        title: 'Produtos',
+        url: '/list',
+        icon: 'list'
+      },
+      {
+        title: 'Carrinho',
+        url: '/carrinho-screen',
+        icon: 'cart'
+      },
+      {
+        title: 'Vendas Realizadas',
+        url: '/relatorios-screen',
+        icon: 'list'
+      },
+      {
+        title: 'Sair',
+        url: '/login-screen',
+        icon: 'list'
+      },
+      )
 
     this.initializeApp();
     
@@ -88,4 +99,14 @@ export class AppComponent implements OnInit{
 
    
   }
+
+  logOut = (obj)  => {
+    
+    if(obj.title == "Sair")
+    {
+      this.authService.logoutUsuario()
+      console.log(this.authService.detalhesUsuario())
+    }
+  }
+
 }

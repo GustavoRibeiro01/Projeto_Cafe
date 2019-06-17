@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { AngularFirestoreCollection, AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import {map, take} from 'rxjs/operators';
 import { Venda } from '../interface/venda';
+import { ItemVendido } from '../interface/item-vendido';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,8 @@ export class VendaService {
 
   vendas: Observable<Venda[]>
   vendaCollection: AngularFirestoreCollection<Venda>
+
+  private itensVenda: ItemVendido[]
 
   constructor(
     private afs: AngularFirestore
@@ -44,4 +47,11 @@ export class VendaService {
     return this.vendas
   }
 
+  getItensVenda = () => {
+    return this.itensVenda
+  }
+
+  setItensVenda = (value: ItemVendido[]) => {
+    this.itensVenda = value
+  }
 }

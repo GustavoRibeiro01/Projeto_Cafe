@@ -131,14 +131,18 @@ export class CarrinhoScreenPage implements OnInit {
 
     this.venda.data = this.gerarDataAtual()
     this.venda.itensVendido = this.carrinhoComprasFinal.map(prod => this.gerarItemVendido(prod))
-    this.venda.uid = this.authService.detalhesUsuario().uid
+
+    let obj = this.authService.detalhesUsuario()
+    
+    this.venda.uid = obj.uid
+    this.venda.email = obj.email
 
     console.log(this.venda)
 
     this.vendaService.addVendaFB(this.venda).then(
       ok => {
         this.produtoService.esvaziarCarrinho()
-        this.router.navigateByUrl("/carrinho-screen")
+        this.router.navigateByUrl("/list")
       },
       err => console.log(err) 
     )

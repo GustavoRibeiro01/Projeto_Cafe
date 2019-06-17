@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Venda } from 'src/app/interface/venda';
+import { VendaService } from 'src/app/services/venda.service';
+import { Router } from '@angular/router';
+import { AutenticationServiceService } from 'src/app/services/autentication-service.service';
 
 @Component({
   selector: 'app-relatorios-screen',
@@ -7,9 +12,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RelatoriosScreenPage implements OnInit {
 
-  constructor() { }
+  vendas: Observable<Venda[]>
+  vendasLiberadas: Venda[]
+  private rootUser: boolean
+
+  constructor(
+    private vendaService: VendaService,
+    private authService: AutenticationServiceService,
+    private router: Router
+  ) {
+      this.vendas = this.vendaService.getVendas()
+   }
 
   ngOnInit() {
   }
 
+  ionViewDidEnter() {
+    this.rootUser = this.authService.getIsRootUser()
+    
+    if(this.rootUser)
+    {
+      this.vendas.subscribe(
+        suc => {
+          this.vendasLiberadas = suc
+        },
+        err => console.log(err)
+      )
+    }
+    else
+    {
+      let obj = this.authService.detalhesUsuario()
+
+      this.vendas.subscribe(
+        suc => {
+          this.vendasLiberadas = suc.filter(venda => venda.uid == obj.uid)
+        },
+        err => console.log(err)
+      )
+    }
+  }
+
+  redirecionar = (venda: Venda) => {
+
+    this.vendaService.setItensVenda(venda.itensVendido)
+    this.router.navigateByUrl("/item-vendidos-screen")
+  }
 }

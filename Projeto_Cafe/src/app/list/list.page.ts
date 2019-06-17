@@ -29,7 +29,6 @@ export class ListPage implements OnInit {
 
   ionViewDidEnter() {
     this.rootUser = this.authService.getIsRootUser()
-    console.log(this.rootUser)
   }
   
   addCarrinhoCompra = (prod: Produto) => {
