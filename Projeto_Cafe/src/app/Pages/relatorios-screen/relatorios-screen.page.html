@@ -9,17 +9,24 @@
 
 <ion-content>
 
-  <ion-card (click)="redirecionar(venda)" *ngFor="let venda of (vendas | async)">
-  
-    <ion-card-header>
-      <ion-card-title>{{venda.data}}</ion-card-title>
-      <ion-card-subtitle>{{venda.email}}</ion-card-subtitle>
-    </ion-card-header>
-  
-    <ion-card-content>
-      
-    </ion-card-content>
+  <div *ngFor="let venda of (vendas | async)">
 
-  </ion-card>
+    <div >
+       
+        <ion-card (click)="redirecionar(venda)">
+  
+            <ion-card-header>
+              <ion-card-title>{{venda.data}}</ion-card-title>
+              <ion-card-subtitle>{{venda.email}}</ion-card-subtitle>
+            </ion-card-header>
+          
+            <ion-card-content>
+              
+            </ion-card-content>
+        
+        </ion-card>
+    </div>
+      
+  </div>
 
 </ion-content>

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="danger">
-    <ion-title>cadastro-produto-screen</ion-title>
+    <ion-title>Adicionar Produtos</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,9 +8,9 @@
   
   <div>
     <img class="image" src="{{base64Image}}">
-    <ion-button expand="block" (click)="capturar()">Tirar Foto do Produto</ion-button>
+    <ion-button expand="block" color="danger" (click)="capturar()">Tirar Foto do Produto</ion-button>
   </div>
-
+  <br>
   <form [formGroup]="formCadastroProduto" (ngSubmit)="Cadastrar(formCadastroProduto.value)">
 
     <ion-item>
@@ -30,7 +30,7 @@
 
     <br>
     
-    <ion-button type="submit">Cadastrar</ion-button>
+    <ion-button expand="block" color="danger" type="submit">Cadastrar</ion-button>
 
   </form>
 

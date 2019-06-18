@@ -32,22 +32,7 @@ export class RelatoriosScreenPage implements OnInit {
     console.log(this.rootUser)
     this.vendas = this.vendaService.getVendas()
 
-    if(this.rootUser)
-    {
-      console.log(this.vendas)
-    }
-    else
-    {
-      let obj = this.authService.detalhesUsuario()
-
-      this.vendas.subscribe(
-        suc => {
-          this.vendasLiberadas = suc.filter(venda => venda.uid == obj.uid)
-          console.log(this.vendasLiberadas)
-        },
-        err => console.log(err)
-      )
-    }
+   
   }
 
   redirecionar = (venda: Venda) => {
