@@ -11,6 +11,7 @@ import { AutenticationServiceService } from './services/autentication-service.se
 })
 export class AppComponent implements OnInit{
   public appPages = [];
+  private appPages1 = [];
 
   rootUser: boolean
 
@@ -20,32 +21,51 @@ export class AppComponent implements OnInit{
     private statusBar: StatusBar,
     private authService: AutenticationServiceService
   ) {
-    this.appPages.push(
-      {
-        title: 'Cadastro de Produto',
-        url: '/cadastro-produto-screen',
-        icon: 'cart'
-      },
-      {
-        title: 'Produtos',
-        url: '/list',
-        icon: 'list'
-      },
-      {
-        title: 'Carrinho',
-        url: '/carrinho-screen',
-        icon: 'cart'
-      },
-      {
-        title: 'Vendas Realizadas',
-        url: '/relatorios-screen',
-        icon: 'list'
-      },
-      {
-        title: 'Sair',
-        url: '/login-screen',
-        icon: 'list'
-      },
+    
+      this.appPages.push(
+        {
+          title: 'Adicionar Produto',
+          url: '/cadastro-produto-screen',
+          icon: 'add'
+        },
+        {
+          title: 'Produtos',
+          url: '/list',
+          icon: 'list'
+        },
+        {
+          title: 'Vendas Realizadas',
+          url: '/relatorios-screen',
+          icon: 'grid'
+        },
+        {
+          title: 'Sair',
+          url: '/login-screen',
+          icon: 'power'
+        }
+      )
+
+      this.appPages1.push(
+        {
+          title: 'Produtos',
+          url: '/list',
+          icon: 'list'
+        },
+        {
+          title: 'Carrinho',
+          url: '/carrinho-screen',
+          icon: 'cart'
+        },
+        {
+          title: 'Minhas Compras',
+          url: '/relatorios-screen',
+          icon: 'grid'
+        },
+        {
+          title: 'Sair',
+          url: '/login-screen',
+          icon: 'power'
+        }
       )
 
     this.initializeApp();
@@ -59,45 +79,12 @@ export class AppComponent implements OnInit{
     });
   }
 
-  ionViewDidEnter() {
-    this.rootUser = this.authService.getIsRootUser()
-
-    console.log(this.rootUser)
-
-    if(this.rootUser)
-    {
-      this.appPages.push(
-        {
-          title: 'Cadastro de Produto',
-          url: '/cadastro-produto-screen',
-          icon: 'cart'
-        },
-        {
-          title: 'Produtos',
-          url: '/list',
-          icon: 'list'
-        }
-     )
-    }
-    else
-    {
-      this.appPages.push(
-        {
-        title: 'Produtos',
-        url: '/list',
-        icon: 'list'
-      },
-      {
-        title: 'Carrinho',
-        url: '/carrinho-screen',
-        icon: 'cart'
-      })
-    }
+  isRootUser = (): boolean => {
+    return this.authService.getIsRootUser()
   }
 
   ngOnInit() {
 
-   
   }
 
   logOut = (obj)  => {

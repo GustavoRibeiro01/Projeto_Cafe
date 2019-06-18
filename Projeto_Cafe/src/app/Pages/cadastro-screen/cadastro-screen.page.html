@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="danger">
     <ion-title>Cadastro</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -8,17 +8,31 @@
   
   <form [formGroup]="formRegistro" (ngSubmit)="Cadastrar(formRegistro.value)">
 
-    <ion-item>
-        <ion-label position="floating">E-mail</ion-label>
-        <ion-input type="text" formControlName="email"></ion-input>
-    </ion-item>
+      <div class="principal">
 
-    <ion-item>
-        <ion-label position="floating">Senha</ion-label>
-        <ion-input type="password" formControlName="password"></ion-input>
-    </ion-item>
+        <ion-card>
 
-    <ion-button type="submit">Cadastrar</ion-button>
+            <ion-card-content>
+
+                <ion-item>
+                    <ion-label position="floating">E-mail</ion-label>
+                    <ion-input type="text" formControlName="email"></ion-input>
+                </ion-item>
+            
+                <ion-item>
+                    <ion-label position="floating">Senha</ion-label>
+                    <ion-input type="password" formControlName="password"></ion-input>
+                </ion-item>
+                
+                <br>
+    
+                <ion-button expand="block" color="danger" type="submit">Cadastrar</ion-button>
+    
+            </ion-card-content>
+    
+          </ion-card>
+        </div>
+        
 
   </form>
   

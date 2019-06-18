@@ -1,15 +1,15 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="danger">
       <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
-    <ion-title>Vendas</ion-title>
+    <ion-title>Relatório</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-card (click)="redirecionar(venda)" *ngFor="let venda of vendasLiberadas">
+  <ion-card (click)="redirecionar(venda)" *ngFor="let venda of (vendas | async)">
   
     <ion-card-header>
       <ion-card-title>{{venda.data}}</ion-card-title>

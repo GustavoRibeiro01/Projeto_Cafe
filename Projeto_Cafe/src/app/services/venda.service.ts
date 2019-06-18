@@ -40,7 +40,7 @@ export class VendaService {
 
    addVendaFB = ( venda: Venda): Promise<DocumentReference> => {
      console.log(venda)
-    return this.vendaCollection.add(Object.assign({}, venda));
+    return this.vendaCollection.add(venda);
   }
 
    getVendas = () => {

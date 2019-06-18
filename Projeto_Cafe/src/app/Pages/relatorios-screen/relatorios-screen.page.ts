@@ -29,15 +29,12 @@ export class RelatoriosScreenPage implements OnInit {
 
   ionViewDidEnter() {
     this.rootUser = this.authService.getIsRootUser()
-    
+    console.log(this.rootUser)
+    this.vendas = this.vendaService.getVendas()
+
     if(this.rootUser)
     {
-      this.vendas.subscribe(
-        suc => {
-          this.vendasLiberadas = suc
-        },
-        err => console.log(err)
-      )
+      console.log(this.vendas)
     }
     else
     {
@@ -46,6 +43,7 @@ export class RelatoriosScreenPage implements OnInit {
       this.vendas.subscribe(
         suc => {
           this.vendasLiberadas = suc.filter(venda => venda.uid == obj.uid)
+          console.log(this.vendasLiberadas)
         },
         err => console.log(err)
       )

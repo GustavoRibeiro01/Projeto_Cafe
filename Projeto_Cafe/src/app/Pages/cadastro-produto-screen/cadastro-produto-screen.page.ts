@@ -7,6 +7,8 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
+import { ToastController } from '@ionic/angular';
+
 @Component({
   selector: 'app-cadastro-produto-screen',
   templateUrl: './cadastro-produto-screen.page.html',
@@ -21,6 +23,7 @@ export class CadastroProdutoScreenPage implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private produtoservice: ProdutoService,
+    private toastCtrl: ToastController,
     private camera: Camera
   ) { }
 
@@ -33,6 +36,12 @@ export class CadastroProdutoScreenPage implements OnInit {
 
   ionViewDidEnter(){
     this.base64Image = "../../../assets/icon/camera.png"
+
+    this.formCadastroProduto = this.formBuilder.group({Nome: new FormControl('',Validators.required),
+                                                       Descricao: new FormControl('', Validators.required),
+                                                       Preco: new FormControl('', Validators.required) 
+                                                      })
+
   }
 
   Cadastrar = (produto) => {
@@ -41,9 +50,13 @@ export class CadastroProdutoScreenPage implements OnInit {
 
     this.produtoservice.addProduto(produto, this.base64Image).then(
       dado => {
+        this.showToast("Produto cadastrado!")
         this.router.navigateByUrl("/list")
       },
-      err => console.log(err) 
+      err => {
+        this.showToast("Houve um problema!")
+        console.log(err) 
+      }
     )
   }
 
@@ -63,8 +76,15 @@ export class CadastroProdutoScreenPage implements OnInit {
       // If it's base64 (DATA_URL)
       this.base64Image = 'data:image/jpeg;base64,' + imageData;
      }, (err) => {
-      // Handle error
+      this.showToast("Houve um problema!")
      });
+  }
+
+  showToast(msg){
+    this.toastCtrl.create({
+      message: msg,
+      duration: 2000
+    }).then(toast => toast.present());
   }
 
 }

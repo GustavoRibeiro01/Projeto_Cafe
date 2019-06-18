@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ItemVendido } from 'src/app/interface/item-vendido';
 import { Venda } from 'src/app/interface/venda';
 import { AutenticationServiceService } from 'src/app/services/autentication-service.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-carrinho-screen',
@@ -23,7 +24,8 @@ export class CarrinhoScreenPage implements OnInit {
     private produtoService: ProdutoService,
     private vendaService: VendaService,
     private authService: AutenticationServiceService,
-    private router: Router
+    private router: Router,
+    private toastCtrl: ToastController
   ) { 
     this.venda = {} as Venda
     this.venda.itensVendido = {} as ItemVendido[]
@@ -76,7 +78,10 @@ export class CarrinhoScreenPage implements OnInit {
   returnPrecoTotal(): number {
 
     if(this.carrinhoCompras.length == 0)
+    {
       return 0.00;
+    }
+      
 
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
@@ -97,6 +102,7 @@ export class CarrinhoScreenPage implements OnInit {
 
   removerCarrinho = (prod: Produto) => {
     this.produtoService.removeCarrinho(prod)
+    this.showToast("Removido do Carrinho!")
   }
 
   //-------------------------------------------------------Finalizar Compra----------------------------------------------------------------
@@ -142,11 +148,28 @@ export class CarrinhoScreenPage implements OnInit {
     this.vendaService.addVendaFB(this.venda).then(
       ok => {
         this.produtoService.esvaziarCarrinho()
+        this.esvaziarCarrinhoFinal()
+        this.showToast("Compra finalizada!")
         this.router.navigateByUrl("/list")
       },
-      err => console.log(err) 
+      err =>{
+        this.showToast("Houve um problema!")
+        console.log(err)
+      }  
+
     )
 
+  }
+
+  esvaziarCarrinhoFinal = () => {
+    this.carrinhoComprasFinal.splice(0, this.carrinhoComprasFinal.length);
+  }
+
+  showToast(msg){
+    this.toastCtrl.create({
+      message: msg,
+      duration: 2000
+    }).then(toast => toast.present());
   }
 
 }
